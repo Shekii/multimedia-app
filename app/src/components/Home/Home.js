@@ -7,14 +7,12 @@ class Home extends Component {
         <div>
           <div className="container">
             <Jumbotron>
-              <h1>Law App</h1> 
+              <h1>TMS</h1> 
               <p>
-                Using IBM Watson's various services, this web application facilites
-                the ability for the user to upload new legal cases and these will be used
-                to establish predence based on similarities between the new case and old cases.
+                  Tove and Morten Skjeggestad
               </p>
               <p>
-                <Button bsStyle="primary" href="/upload">Upload New Case</Button>
+                <Button bsStyle="primary" href="/upload">Manage Files</Button>
               </p>
             </Jumbotron>
           </div>

@@ -21,17 +21,17 @@ class Header extends Component {
                                 <Nav pullRight>
                                     <LinkContainer to="/manage">
                                         <NavItem eventKey={1}>
-                                            Manage Cases
+                                            Manage Files
                                         </NavItem>
                                     </LinkContainer>
                                     <LinkContainer to="/upload">
                                         <NavItem eventKey={2}>
-                                            Upload Case
+                                            Upload File
                                         </NavItem>
                                     </LinkContainer>
-                                    <LinkContainer to="/upload">
+                                    <LinkContainer to="/profile">
                                         <NavItem eventKey={2}>
-                                            Statistics
+                                            My Profile
                                         </NavItem>
                                     </LinkContainer>
                                 </Nav>

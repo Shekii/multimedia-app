@@ -26,7 +26,7 @@ class App extends Component {
          <div className="container">
           <Breadcrumb>
           <BreadcrumbsItem to='/'>    
-            Precedence Establisher
+            Multimedia
           </BreadcrumbsItem>
           <Breadcrumbs
             separator={<b> / </b>}
