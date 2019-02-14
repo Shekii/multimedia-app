@@ -2,12 +2,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-//import ManageCases from './comps/ManageCases';
-//import UploadCase from './comps/UploadCase.js';
+import LoginPage from './components/Login/Login.js';
 import Home from './components/Home/Home.js';
 import Header from './components/static/Header';
-
-//import Case from './comps/Case';
 
 import { Breadcrumb} from 'react-bootstrap';
 import { NavLink} from 'react-router-bootstrap';
@@ -26,7 +23,7 @@ class App extends Component {
          <div className="container">
           <Breadcrumb>
           <BreadcrumbsItem to='/'>    
-            Multimedia
+            Tovi
           </BreadcrumbsItem>
           <Breadcrumbs
             separator={<b> / </b>}
@@ -41,7 +38,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home}/>
-            {/* <Route path="/manage" exact component={ManageCases}/> */}
+            <Route path="/login" exact component={LoginPage}/>
             {/* <Route path="/upload" exact component={UploadCase}/> */}
             {/* <Route path="/case/:id" exact component={Case}/> */}
             <Route component={Home}/>

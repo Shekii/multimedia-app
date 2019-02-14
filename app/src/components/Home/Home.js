@@ -7,11 +7,12 @@ class Home extends Component {
         <div>
           <div className="container">
             <Jumbotron>
-              <h1>TMS</h1> 
+              <h1>Tovi</h1> 
               <p>
-                  Tove and Morten Skjeggestad
+                  Welcome to the new Multimedia Sharing Web Application, Tovi, from TMS.
               </p>
               <p>
+              <p>Current locations supported: Oslo, Malmö and Leeds.</p>
                 <Button bsStyle="primary" href="/upload">Manage Files</Button>
               </p>
             </Jumbotron>

@@ -13,7 +13,7 @@ class Header extends Component {
                         <Navbar inverse collapseOnSelect fixedTop>
                             <Navbar.Header>
                                 <Navbar.Brand pullLeft>
-                                    <a href="/">TMS </a>
+                                    <a href="/">Tovi </a>
                                 </Navbar.Brand>
                                 <Navbar.Toggle />
                             </Navbar.Header>
@@ -32,6 +32,11 @@ class Header extends Component {
                                     <LinkContainer to="/profile">
                                         <NavItem eventKey={2}>
                                             My Profile
+                                        </NavItem>
+                                    </LinkContainer>
+                                    <LinkContainer to="/login">
+                                        <NavItem eventKey={2}>
+                                            Login
                                         </NavItem>
                                     </LinkContainer>
                                 </Nav>
