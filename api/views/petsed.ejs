@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./partials/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>Edit the pet's details</h1>
+            <% let url="http://localhost:3000/petshop/pet/"+ animal._id +"/" %>
+
+            <form action='<%= url %>' method='post'>
+                <table border='1'>
+                    <tr>
+                        <th>Name</th>
+                        <th>Species</th>
+                        <th>Breed</th>
+                        <th>Age</th>
+                        <th>Colour or markings</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" , name="nom" , value="<%= animal.name %>" /></td>
+
+                        <td><input type="text" , name="species" , value="<%= animal.species %>" /></td>
+
+                        <td><input type="text" , name="age" , value="<%= animal.age %>" /></td>
+
+                        <td><input type="text" , name="breed" , value="<%= animal.breed %>" /></td>
+
+                        <td><input type="text" , name="colour" , value="<%= animal.colour %>" /></td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="submit" , value="Submit me!!" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+
+</body>
+
+</html>

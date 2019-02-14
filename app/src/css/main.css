@@ -1,0 +1,66 @@
+#caseRow {
+    margin-bottom: 1px solid black;
+}
+.caseTextView {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid grey;
+
+}
+#caseEdit, #caseDelete, #caseView {
+    padding: 0;
+    margin:0;
+    width: 3px;
+}
+#caseTextCell
+{
+    color:red;
+    height:40px;
+    overflow-y: scroll;
+}
+#caseEditCell, #caseDeleteCell, #caseViewCell {
+
+}
+#tblManageCases {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+    #caseName, #caseDate {
+        width: 7%;
+    }
+
+    #caseControls {
+        width: 10%;
+        text-align:right;
+    }
+
+    #caseText {
+        width:50%;
+    }
+
+    #controls {
+        float:right;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #caseControls {
+    width: 25%;
+    text-align:right;
+}
+	tr td:nth-child(3), th:nth-child(3) { display:none; visibility:hidden; }
+}
+
+@media only screen and (max-width: 420px) {
+	tr td:nth-child(3), tr th:nth-child(3)	{ display:none; visibility:hidden; }
+}
+
+@media only screen and (max-width: 320px) {
+	tr td:nth-child(3), tr th:nth-child(3)	{ display:none; visibility:hidden; }
+}
+
+#header {
+    margin-bottom: 60px;
+}

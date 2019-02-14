@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./partials/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include ./partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>Existing pets</h1>
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Species</th>
+                        <th>Breed</th>
+                        <th>Age</th>
+                        <th>Colour or markings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% animals.forEach( function(pet ) { %>
+                        <tr>
+                            <td> <%= pet.name %> </td>
+                            <td> <%= pet.species %> </td>
+                            <td> <%= pet.breed %> </td>
+                            <td> <%= pet.age %> </td>
+                            <td> <%= pet.colour %> </td>
+                            <% let editURL="http://localhost:3000/petshop/pet/"+ pet._id +"/edit" %>
+                            <td><a href="<%= editURL %>" >Edit </a></td>
+
+
+                            <% let deleteURL="http://localhost:3000/petshop/pet/delete/"+ pet._id +"/" %>
+                            <td><a href="<%= deleteURL %>" >Delete </a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="jumbotron">
+            <h1>Add a new Pet</h1>
+
+            <form action='http://localhost:3000/petshop/pet/' method='post'>
+                <table border='1'>
+                    <tr>
+                        <th>Name</th>
+                        <th>Species</th>
+                        <th>Breed</th>
+                        <th>Age</th>
+                        <th>Colour or markings</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" , name="nom" /></td>
+                        <td><input type="text" , name="species" /></td>
+                        <td><input type="text" , name="age" /></td>
+                        <td><input type="text" , name="breed" /></td>
+                        <td><input type="text" , name="colour" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" , value="Submit me!!" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+
+</body>
+
+</html>

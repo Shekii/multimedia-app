@@ -1,0 +1,28 @@
+html
+    head
+        title!= title
+    body
+        h1 !{message}
+
+        form(action='http://localhost:3000/petshop/pet/'+ animal._id +'/update' method='post')
+            table(border='1')
+                tr
+                    th Name
+                    th Species
+                    th Breed
+                    th Age
+                    th Colour or markings
+                tr
+                    td 
+                        input(type="text", name="nom", value=animal.name)
+                    td
+                        input(type="text", name="species", value=animal.species)
+                    td
+                        input(type="text", name="age", value=animal.age)
+                    td
+                        input(type="text", name="breed", value=animal.breed)
+                    td
+                        input(type="text", name="colour", value=animal.colour)
+                tr
+                    td
+                        input(type="submit", value="Submit me!!")

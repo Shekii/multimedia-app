@@ -1,0 +1,43 @@
+html
+    head
+        title!= title
+    body
+        h1 !{message}
+        table(border='1')
+            thead
+                th Name
+                th Species
+                th Breed
+                th Age
+                th Colour or markings
+            tbody
+                each dog in animals
+                    tr
+                        td #{dog.name}
+                        td #{dog.species}
+                        td #{dog.breed}
+                        td #{dog.age}
+                        td #{dog.colour}
+
+        form(action='http://localhost:3000/petshop/pet' method='post')
+            table(border='1')
+                tr
+                    th Name
+                    th Species
+                    th Breed
+                    th Age
+                    th Colour or markings
+                tr
+                    td 
+                        input(type="text", name="nom")
+                    td
+                        input(type="text", name="species")
+                    td
+                        input(type="text", name="age")
+                    td
+                        input(type="text", name="breed")
+                    td
+                        input(type="text", name="colour")
+                tr
+                    td
+                        input(type="submit", value="Submit me!!")
