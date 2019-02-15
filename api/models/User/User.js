@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-mongoose.connect('mongodb://localhost:27017/TMS', {useNewUrlParser: true});
+
 const UserSchema = new mongoose.Schema({
   username: {
       type: String,
-      default: ''
+      unique: true,
+      required: true
   },
   password: {
       type: String,
-      default: ''
+      required: true
   },
   firstName: {
       type: String,
@@ -33,18 +34,45 @@ const UserSchema = new mongoose.Schema({
   accountType: { 
       type: Number,
       default: 0 //(Admin = 1, Normal = 0)
-  },
-   isDeleted: {
-        type:Boolean,
-        default: false
+  }
+});
+
+UserSchema.pre('save', function (next) {
+    var user = this;
+    if (this.isModified('password') || this.isNew) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(user.password, salt, null, function (err, hash) {
+                if (err) {
+                    return next(err);
+                }
+                user.password = hash;
+                next();
+            });
+        });
+    } else {
+        return next();
     }
 });
 
-UserSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-}
+UserSchema.methods.comparePassword = function (passw, cb) {
+    bcrypt.compare(passw, this.password, function (err, isMatch) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, isMatch);
+    });
+};
 
-UserSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-}
+// UserSchema.methods.generateHash = function(password) {
+//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+// }
+
+// UserSchema.methods.validPassword = function(password) {
+//     return bcrypt.compareSync(password, this.password);
+// }
+
+
 module.exports = mongoose.model('Users', UserSchema);

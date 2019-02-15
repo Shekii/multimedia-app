@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require("mongoose");
+var auth = require('./routes/auth');
+
+mongoose.connect('mongodb://localhost:27017/TMS', {useNewUrlParser: true});
 
 const cors = require('cors');
 
@@ -23,15 +26,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var indexRouter = require('./routes/index');
-var accountRouter = require('./routes/account');
+var accountRouter = require('./routes/user');
 var fileRouter = require('./routes/file');
 var tmsRouter = require('./routes/tms');
+var authRouter = require('./routes/auth');
 
 app.use('/', indexRouter);
 
 app.use('/account', accountRouter);
 app.use('/tms', tmsRouter);
 app.use('/file', fileRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

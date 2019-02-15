@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { 
      Button, 
-     FormGroup, Form, Grid, Row, Col, ControlLabel, FormControl } from 'react-bootstrap';
+     FormGroup,
+     Form,
+     Grid,
+     Row,
+     Col,
+    ControlLabel,
+    FormControl } from 'react-bootstrap';
 
 
 class EditCaseForm extends Component { 

@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import LoginPage from './components/Login/Login.js';
-import Home from './components/Home/Home.js';
+import LoginPage from './components/Login/Login';
+import RegisterPage from './components/Register/Register';
+import Home from './components/Home/Home';
 import Header from './components/static/Header';
 
 import { Breadcrumb} from 'react-bootstrap';
@@ -39,6 +40,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" exact component={LoginPage}/>
+            <Route path="/register" exact component = {RegisterPage}/>
             {/* <Route path="/upload" exact component={UploadCase}/> */}
             {/* <Route path="/case/:id" exact component={Case}/> */}
             <Route component={Home}/>
