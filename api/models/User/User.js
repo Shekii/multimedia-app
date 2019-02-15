@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
       type: Date, 
       default: Date.now()
  },
+  accountType: { 
+      type: Number,
+      default: 0 //(Admin = 1, Normal = 0)
+  },
    isDeleted: {
         type:Boolean,
         default: false
@@ -40,7 +44,7 @@ UserSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 }
 
-UserSchema.methods.validatePassword = function(password) {
+UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
 module.exports = mongoose.model('Users', UserSchema);
