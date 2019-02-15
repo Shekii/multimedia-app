@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+const passport = require('passport');
+require('../config/passport')(passport);
+
+const jwt  = require('jsonwebtoken');
 const User = require('../models/User/User');
+const settings = require('../config/settings');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -15,6 +20,8 @@ router.post('/login', function(req, res) {
 
   let username = req.body.username;
   let password = req.body.password;
+
+  const user = new User();
 
   User.findOne({
     username: username
@@ -51,7 +58,7 @@ router.post('/login', function(req, res) {
 /*
  * Register
  */
-router.post('/register', function(req, res) {
+router.post('/register', function(req, res,next) {
     const { body } = req;
     const {
         username,
@@ -60,44 +67,39 @@ router.post('/register', function(req, res) {
         lastName,
         location,
         team,
-        creationDate,
-        accountType,
     } = body;
-
-    console.log(body);
 
   if (!username || !password || !firstName || !lastName 
       || !location || !team ) {
         console.log("empty");
-        return res.json({
+          res.send( {
           success: false,
           message: 'Error: Missing fields. Enter all of the fields.'
         });
   } 
 
-    console.log("here");
-
     let f_username = username.toLowerCase();
-    var newUser = new User({
-      username: f_username,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      location: location,
-      team: team
-    });
+    const newUser = new User();
+      newUser.username= f_username;
+      newUser.password= newUser.generateHash(password);
+      newUser.firstName= firstName;
+      newUser.lastName= lastName;
+      newUser.location= location;
+      newUser.team= team;
     // save the user
-    newUser.save(function(err) {
-      console.log("here");
+    
+      newUser.save((err) => {
       if (err) {
-        return res.json({
-          success: false, message: 'Username already exists.'
+        res.send( {
+          success: false,
+          message: 'Username already exists.'
+        });
+      } else {
+        res.send( {
+          success: true,
+          message: 'Successful created new user.'
         });
       }
-      return res.json({
-        success: true,
-        message: 'Successful created new user.'
-      });
     });
 
 });

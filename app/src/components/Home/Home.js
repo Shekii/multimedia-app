@@ -11,10 +11,8 @@ class Home extends Component {
               <p>
                   Welcome to the new Multimedia Sharing Web Application, Tovi, from TMS.
               </p>
-              <p>
               <p>Current locations supported: Oslo, Malmö and Leeds.</p>
                 <Button bsStyle="primary" href="/upload">Manage Files</Button>
-              </p>
             </Jumbotron>
           </div>
         </div>

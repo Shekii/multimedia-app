@@ -13,14 +13,13 @@ import {
     ControlLabel,
     FormControl, Grid, Row, Alert } from 'react-bootstrap';
 
-class Login extends Component {
+class ProfilePage extends Component {
 
   constructor() {
     super();
     this.state = {
       username: '',
       password: '',
-      errorMessage: ''
     };
   }
   onChange = (e) => {
@@ -34,30 +33,18 @@ class Login extends Component {
 
     const { username, password } = this.state;
 
-    axios.post(constants.API + 'account/register', { username, password })
+    axios.post(constants.API + 'account/register',
+    { username, password })
       .then((result) => {
-        console.log(result);
-        if (result.data.success == true) {
-          localStorage.setItem('jwtToken', result.data.token);
-          this.setState({ errorMessage: '' });
-          this.props.history.push('/')
-        }
-      })
-      .catch((error) => {
-          this.setState({ errorMessage: 'Login failed. Username or password not match' });
+        //this.props.history.push("/login")
+        console.log(result.data.message);
       });
   }
 
   render() {
-    const { username, password, errorMessage } = this.state;
     return (
       <div className="container">
-        <BreadcrumbsItem to='/login'>Login</BreadcrumbsItem>
-          {errorMessage !== '' &&
-            <div className="alert alert-danger alert-dismissible" role="danger">
-              { errorMessage }
-            </div>
-          }
+        <BreadcrumbsItem to='/profile'>Profile</BreadcrumbsItem>
         <Form 
             horizontal
             noValidate
@@ -96,4 +83,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default ProfilePage;
