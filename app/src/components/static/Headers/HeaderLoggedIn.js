@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, Nav,NavItem } from 'react-bootstrap';
-//import { Link } from 'react-router-dom';
+import {withRouter} from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
+
 import '../../../css/main.css';
 import * as constants from '../constants.js';
 import axios from 'axios';
@@ -24,7 +25,7 @@ class HeaderLoggedIn extends Component {
         .catch((error) => {
             console.log(error);
         });
-        window.location.reload();
+        this.props.history.push("/login");
     }
 
     render() {
@@ -65,4 +66,4 @@ class HeaderLoggedIn extends Component {
     }
 }
 
-export default HeaderLoggedIn;
+export default withRouter(HeaderLoggedIn);

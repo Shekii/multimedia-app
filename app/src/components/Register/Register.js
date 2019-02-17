@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-//import { Link } from 'react-router-dom';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import * as constants from '../static/constants.js';
 
@@ -11,7 +9,7 @@ import {
      Form,
      Col,
     ControlLabel,
-    FormControl, Grid, Row, Alert } from 'react-bootstrap';
+    FormControl, Alert } from 'react-bootstrap';
 
 class Register extends Component {
 
@@ -41,7 +39,7 @@ class Register extends Component {
     axios.post(constants.API + 'account/register',
     { username, password, firstName, lastName, location, team })
       .then((result) => {
-        if (result.data.success == false) {
+        if (result.data.success === false) {
             this.setState({ errorMessage: result.data.message});
         } else {
             this.props.history.push("/login")
@@ -56,9 +54,9 @@ class Register extends Component {
       <div className="container">
         <BreadcrumbsItem to='/login'>Register New Account</BreadcrumbsItem>
           {errorMessage !== '' &&
-            <div className="alert alert-danger alert-dismissible" role="danger">
-              { errorMessage }
-            </div>
+            <Alert dismissible="true" variant="danger">
+             <p> { errorMessage } </p>
+            </Alert>
           }
         <Form 
             horizontal

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 //import { Link } from 'react-router-dom';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
@@ -11,16 +10,15 @@ import {
      Form,
      Col,
     ControlLabel,
-    FormControl, Grid, Row, Alert } from 'react-bootstrap';
+    FormControl, Alert } from 'react-bootstrap';
 
 class Login extends Component {
 
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: '',
-      errorMessage: ''
+      errorMessage: '',
+      isActive: false
     };
   }
   onChange = (e) => {
@@ -36,7 +34,7 @@ class Login extends Component {
 
     axios.post(constants.API + 'account/login', { username, password })
       .then((result) => {
-        if (result.data.success == true) {
+        if (result.data.success === true) {
           localStorage.setItem('jwtToken', result.data.token);
           localStorage.setItem('user', JSON.stringify(result.data.user));
           
@@ -50,14 +48,14 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password, errorMessage } = this.state;
+    const { errorMessage } = this.state;
     return (
       <div className="container">
         <BreadcrumbsItem to='/login'>Login</BreadcrumbsItem>
-          {errorMessage !== '' &&
-            <div className="alert alert-danger alert-dismissible" role="danger">
-              { errorMessage }
-            </div>
+          {errorMessage !== '' && 
+            <Alert variant="danger" role="alert">
+             <p> { errorMessage } </p>
+            </Alert>
           }
         <Form 
             horizontal

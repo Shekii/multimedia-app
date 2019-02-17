@@ -1,6 +1,7 @@
 /* Import statements */
 import React, { Component } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
+import {Router, browserHistory} from 'react-router';
 
 import LoginPage from './components/Login/Login';
 import RegisterPage from './components/Register/Register';
@@ -12,8 +13,8 @@ import HeaderUnauth from './components/static/Headers/HeaderUnauth';
 import Profile from './components/Profile/ProfilePage';
 
 import { Breadcrumb, Navbar, Nav,NavItem} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { NavLink} from 'react-router-bootstrap';
+import { LinkContainer, NavLink } from 'react-router-bootstrap';
+
 import { Breadcrumbs, BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 
 import * as constants from './components/static/constants.js';
@@ -46,7 +47,7 @@ class App extends Component {
 
     axios.get(constants.API+ 'account/')
       .then(res => {
-        console.log(res);
+        //console.log(res);
       })
       .catch((error) => {
         if(error.response.status === 401) {
@@ -87,7 +88,6 @@ class App extends Component {
             <Route path="/register" exact component = {RegisterPage}/>
             <Route path="/profile"
                    render={(props) => <Profile user={this.state.user} />}/>
-            {/* <Route path="/manage" exact component={ManageFiles}/> */}
             {/* <Route path="/case/:id" exact component={Case}/> */}
             <Route component={Home}/>
           </Switch>

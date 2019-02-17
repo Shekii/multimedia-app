@@ -10,7 +10,6 @@ const settings = require('../config/settings');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    console.log(req);
     return res.json({success:true, message: "test"});
 });
 
@@ -24,8 +23,6 @@ router.post('/logout', function(req, res) {
   User.findOne({
     username: username
   }, function(err, user) {
-        if (err)
-           throw err;
         user.token = '';
         user.save((err) => {
         if (err) {

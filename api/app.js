@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/user');
-var fileRouter = require('./routes/file');
+var fileHandlerRouter = require('./routes/file');
 var tmsRouter = require('./routes/tms');
 var authRouter = require('./routes/auth');
 
@@ -35,7 +35,7 @@ app.use('/', indexRouter);
 
 app.use('/account', accountRouter);
 app.use('/tms', tmsRouter);
-app.use('/file', fileRouter);
+app.use('/file', fileHandlerRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
