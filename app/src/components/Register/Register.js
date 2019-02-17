@@ -22,13 +22,13 @@ class Register extends Component {
       password: '',
       firstName: '',
       lastName: '',
-      location: '',
-      team: '',
+      location: 'Oslo',
+      team: 'Creative',
       errorMessage: ''
     };
   }
   onChange = (e) => {
-    const state = this.state
+    const state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
@@ -65,7 +65,7 @@ class Register extends Component {
             noValidate
             onSubmit={this.onSubmit}>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalUsername">
                 <Col componentClass={ControlLabel} sm={2}>Username</Col>
                 <Col sm={10}>
                     <FormControl 
@@ -76,18 +76,18 @@ class Register extends Component {
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalPassword">
                 <Col componentClass={ControlLabel} sm={2}>Password</Col>
                 <Col sm={10}>
                     <FormControl 
-                        required type="text" 
+                        required type="password" 
                         name="password" 
                         placeholder="Password"
                         onChange={this.onChange}/>
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalFirstName">
                 <Col componentClass={ControlLabel} sm={2}>First Name</Col>
                 <Col sm={10}>
                     <FormControl 
@@ -98,7 +98,7 @@ class Register extends Component {
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalLastName">
                 <Col componentClass={ControlLabel} sm={2}>Surname</Col>
                 <Col sm={10}>
                     <FormControl 
@@ -109,25 +109,26 @@ class Register extends Component {
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalLocation">
                 <Col componentClass={ControlLabel} sm={2}>Location</Col>
                 <Col sm={10}>
-                    <FormControl 
-                        required type="text" 
-                        name="location" 
-                        placeholder="Location"
-                        onChange={this.onChange}/>
+                    <select name="location" onChange={this.onChange} className="form-control">
+                        <option value="Oslo" defaultValue>Oslo</option>
+                        <option value="Malmö"> Malmö</option>
+                        <option value="Leeds">Leeds</option>
+                    </select>
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalTeam">
                 <Col componentClass={ControlLabel} sm={2}>Team</Col>
                 <Col sm={10}>
-                    <FormControl 
-                        required type="text" 
-                        name="team" 
-                        placeholder="Team"
-                        onChange={this.onChange}/>
+                    <select name="team" onChange={this.onChange} className="form-control">
+                        <option value="Creative" defaultValue>Creative</option>
+                        <option value="Sales"> Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Management/Support">Management/Support</option>
+                    </select>
                 </Col>
             </FormGroup>
             <Button 

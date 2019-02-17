@@ -1,16 +1,22 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect  } from 'react-router-dom';
 
 import LoginPage from './components/Login/Login';
 import RegisterPage from './components/Register/Register';
 import Home from './components/Home/Home';
-import Header from './components/static/Header';
+
+import HeaderLoggedIn from './components/static/Headers/HeaderLoggedIn';
+import HeaderUnauth from './components/static/Headers/HeaderUnauth';
+
 import Profile from './components/Profile/ProfilePage';
 
-import { Breadcrumb} from 'react-bootstrap';
+import { Breadcrumb, Navbar, Nav,NavItem} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { NavLink} from 'react-router-bootstrap';
 import { Breadcrumbs, BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
+
+import * as constants from './components/static/constants.js';
 
 import axios from 'axios';
 
@@ -22,66 +28,75 @@ class App extends Component {
     super(props);
     this.state = {
       books: [],
-      user: []
+      user: [],
+      isLoggedIn: false
     };
   }
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    // axios.get('/api/book')
-    //   .then(res => {
-    //     this.setState({ books: res.data });
-    //     console.log(this.state.books);
-    //   })
-    //   .catch((error) => {
-    //     if(error.response.status === 401) {
-    //       this.props.history.push("/login");
-    //     }
-    //   });
-  }
 
-  logout = () => {
-    localStorage.removeItem('jwtToken');
-    window.location.reload();
+    if (localStorage.getItem('jwtToken'))
+      this.setState({isLoggedIn: true});
+
+    if (localStorage.getItem('user')) {
+        let userObj = JSON.parse(localStorage.getItem('user'));
+        this.setState({user: userObj});
+    }
+
+    axios.get(constants.API+ 'account/')
+      .then(res => {
+        console.log(res);
+      })
+      .catch((error) => {
+        if(error.response.status === 401) {
+          this.props.history.push("/login");
+        }
+      });
   }
 
   render() {
     return (
       <div>
 
-         <Header></Header>
-          
-         {/*<Breadcrumbs></Breadcrumbs>*/}
+        {localStorage.getItem('jwtToken') &&
+          <HeaderLoggedIn user={this.state.user}/>
+        }
+        {!localStorage.getItem('jwtToken') &&
+          <HeaderUnauth/>
+        }
          <div className="container">
-            <h3 className="panel-title">
-              {localStorage.getItem('jwtToken') &&
-                <button className="btn btn-primary" onClick={this.logout}>Logout</button>
-              }
-            </h3>
-          <Breadcrumb>
-          <BreadcrumbsItem to='/'>    
-            Tovi
-          </BreadcrumbsItem>
-          <Breadcrumbs
-            separator={<b> / </b>}
-            item={NavLink}
-            finalItem={'b'}
-            finalProps={{
-              style: {color: 'black'}
-            }}
-          />
-          </Breadcrumb>
+            <Breadcrumb>
+              <BreadcrumbsItem to=''>    
+                Tovi
+              </BreadcrumbsItem>
+              <Breadcrumbs
+                separator={<b> / </b>}
+                item={NavLink}
+                finalItem={'b'}
+                finalProps={{
+                  style: {color: 'black'}
+                }}
+            />
+            </Breadcrumb>
          </div>
 
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" exact component={LoginPage}/>
             <Route path="/register" exact component = {RegisterPage}/>
-            <Route path="/profile" exact component = {Profile}/>
-            {/* <Route path="/upload" exact component={UploadCase}/> */}
+            <Route path="/profile"
+                   render={(props) => <Profile user={this.state.user} />}/>
+            {/* <Route path="/manage" exact component={ManageFiles}/> */}
             {/* <Route path="/case/:id" exact component={Case}/> */}
             <Route component={Home}/>
           </Switch>
+
+        <footer className="footer">
+          <div className="container">
+            <span className="text-muted">&copy; Harry Walker 2019</span>
+          </div>
+        </footer>
 
       </div>
     )

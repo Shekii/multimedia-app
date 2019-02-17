@@ -34,17 +34,18 @@ class Login extends Component {
 
     const { username, password } = this.state;
 
-    axios.post(constants.API + 'account/register', { username, password })
+    axios.post(constants.API + 'account/login', { username, password })
       .then((result) => {
-        console.log(result);
         if (result.data.success == true) {
           localStorage.setItem('jwtToken', result.data.token);
+          localStorage.setItem('user', JSON.stringify(result.data.user));
+          
           this.setState({ errorMessage: '' });
           this.props.history.push('/')
-        }
+        } 
       })
       .catch((error) => {
-          this.setState({ errorMessage: 'Login failed. Username or password not match' });
+          this.setState({errorMessage: 'Authorisation failed. Invalid Username or Password.'});
       });
   }
 
@@ -63,7 +64,7 @@ class Login extends Component {
             noValidate
             onSubmit={this.onSubmit}>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalUsername">
                 <Col componentClass={ControlLabel} sm={2}>Username</Col>
                 <Col sm={10}>
                     <FormControl 
@@ -74,11 +75,11 @@ class Login extends Component {
                 </Col>
             </FormGroup>
             <FormGroup 
-                noValidate controlId="formHorizontalName">
+                noValidate controlId="formHorizontalPassword">
                 <Col componentClass={ControlLabel} sm={2}>Password</Col>
                 <Col sm={10}>
                     <FormControl 
-                        required type="text" 
+                        required type="password" 
                         name="password" 
                         placeholder="Password"
                         onChange={this.onChange}/>

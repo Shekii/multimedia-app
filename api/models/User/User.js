@@ -34,6 +34,10 @@ const UserSchema = new mongoose.Schema({
   accountType: { 
       type: Number,
       default: 0 //(Admin = 1, Normal = 0)
+  },
+  token: {
+      type: String,
+      default: ''
   }
 });
 

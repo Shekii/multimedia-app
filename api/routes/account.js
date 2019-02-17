@@ -48,7 +48,8 @@ router.get('/verify', function (req, res, next) {
 /*
  * SignIn
  */
-router.post('/signin', function (req, res, next) { 
+router.post('/login', function (req, res, next) { 
+    console.log("here");
     const { body } = req;
     const {
         username,

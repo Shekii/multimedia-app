@@ -10,15 +10,37 @@ const settings = require('../config/settings');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+    console.log(req);
     return res.json({success:true, message: "test"});
+});
+
+/*
+ * Logout
+ */
+router.post('/logout', function(req, res) {
+
+  let username = req.body.username.toLowerCase();
+
+  User.findOne({
+    username: username
+  }, function(err, user) {
+        if (err)
+           throw err;
+        user.token = '';
+        user.save((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+  });
 });
 
 /*
  * Login
  */
-router.post('/login', function(req, res) {
+router.post('/login', function(req, res, next) {
 
-  let username = req.body.username;
+  let username = req.body.username.toLowerCase();
   let password = req.body.password;
 
   const user = new User();
@@ -40,9 +62,18 @@ router.post('/login', function(req, res) {
           // if user is found and password is right create a token
           var token = jwt.sign(user.toJSON(), settings.secret);
           // return the information including token as JSON
-          res.json({
+            user.token = token;
+            user.save((err) => {
+            if (err) {
+              res.send( {
+                success: false
+              });
+            }
+          });
+          res.status(200).json({
             success: true,
-            token: 'JWT ' + token
+            token: token,
+            user: user
           });
         } else {
           res.status(401).send({
@@ -58,7 +89,7 @@ router.post('/login', function(req, res) {
 /*
  * Register
  */
-router.post('/register', function(req, res,next) {
+router.post('/register', function(req, res, next) {
     const { body } = req;
     const {
         username,
@@ -71,13 +102,11 @@ router.post('/register', function(req, res,next) {
 
   if (!username || !password || !firstName || !lastName 
       || !location || !team ) {
-        console.log("empty");
           res.send( {
           success: false,
           message: 'Error: Missing fields. Enter all of the fields.'
         });
-  } 
-
+  } else { 
     let f_username = username.toLowerCase();
     const newUser = new User();
       newUser.username= f_username;
@@ -101,7 +130,7 @@ router.post('/register', function(req, res,next) {
         });
       }
     });
-
+  }
 });
 
 module.exports = router;
