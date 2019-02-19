@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const passport = require('passport');
 require('../config/passport')(passport);
 
 const jwt  = require('jsonwebtoken');
-const User = require('../models/User/User');
+const User = require('../models/User');
 const settings = require('../config/settings');
 
 /* GET users listing. */

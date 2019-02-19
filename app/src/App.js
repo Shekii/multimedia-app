@@ -11,7 +11,8 @@ import HeaderLoggedIn from './components/static/Headers/HeaderLoggedIn';
 import HeaderUnauth from './components/static/Headers/HeaderUnauth';
 
 import Profile from './components/Profile/ProfilePage';
-
+import FileUpload from  './components/FileUpload/FileUpload';
+import ManageFiles from './components/ManageFiles/ManageFiles';
 import { Breadcrumb, Navbar, Nav,NavItem} from 'react-bootstrap';
 import { LinkContainer, NavLink } from 'react-router-bootstrap';
 
@@ -68,7 +69,7 @@ class App extends Component {
         }
          <div className="container">
             <Breadcrumb>
-              <BreadcrumbsItem to=''>    
+              <BreadcrumbsItem to='/'>    
                 Tovi
               </BreadcrumbsItem>
               <Breadcrumbs
@@ -88,15 +89,13 @@ class App extends Component {
             <Route path="/register" exact component = {RegisterPage}/>
             <Route path="/profile"
                    render={(props) => <Profile user={this.state.user} />}/>
+            <Route path="/upload"
+                   render={(props) => <FileUpload user={this.state.user} />}/>
+            <Route path="/manage"
+                   render={(props) => <ManageFiles user={this.state.user} />}/>  
             {/* <Route path="/case/:id" exact component={Case}/> */}
             <Route component={Home}/>
           </Switch>
-
-        <footer className="footer">
-          <div className="container">
-            <span className="text-muted">&copy; Harry Walker 2019</span>
-          </div>
-        </footer>
 
       </div>
     )

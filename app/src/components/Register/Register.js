@@ -111,8 +111,8 @@ class Register extends Component {
                 <Col componentClass={ControlLabel} sm={2}>Location</Col>
                 <Col sm={10}>
                     <select name="location" onChange={this.onChange} className="form-control">
-                        <option value="Oslo" defaultValue>Oslo</option>
-                        <option value="Malmö"> Malmö</option>
+                        <option value="Oslo" defaultValue="Oslo">Oslo</option>
+                        <option value="Malmö">Malmö</option>
                         <option value="Leeds">Leeds</option>
                     </select>
                 </Col>
@@ -122,7 +122,7 @@ class Register extends Component {
                 <Col componentClass={ControlLabel} sm={2}>Team</Col>
                 <Col sm={10}>
                     <select name="team" onChange={this.onChange} className="form-control">
-                        <option value="Creative" defaultValue>Creative</option>
+                        <option value="Creative" defaultValue="Creative">Creative</option>
                         <option value="Sales"> Sales</option>
                         <option value="Marketing">Marketing</option>
                         <option value="Management/Support">Management/Support</option>

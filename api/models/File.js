@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const FileSchema = new mongoose.Schema({
-  _id: {
-      type: Schema.Types.ObjectId,
-      unique: true,
-      required: true
-  },
   title: {
       type: String,
       required: true
@@ -34,7 +29,7 @@ const FileSchema = new mongoose.Schema({
   //User can set which locations
   //may use view or edit the file
   permittedLocations: {
-    locations: [],
+    type: [],
     required: true,
     default: []
   }
