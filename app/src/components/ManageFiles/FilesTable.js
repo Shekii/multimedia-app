@@ -9,7 +9,7 @@ const FilesTable = (props) => {
     return (
         <div>
         <div className="container">
-            <h1>Manage Cases <small>Using Watson Discovery</small></h1>
+            <h1>Manage Files</h1>
 
             <div className="table-responsive">
                 <Table className="table">
@@ -17,10 +17,11 @@ const FilesTable = (props) => {
                     <tr>
                         <th id="">Title</th>
                         <th id="">Type</th>
-                        <th id="">Size</th>
                         <th id="">Author</th>
+                        <th id="">Size <small>(kb)</small></th>
                         <th id="">Created</th>
-                        <th id="">Modified</th>
+                        <th id="">Last Editor</th>
+                        <th id=""></th>
                     </tr>
                 </thead>
                 <tbody>

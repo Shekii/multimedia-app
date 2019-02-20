@@ -35,6 +35,7 @@ class FileUpload extends Component {
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
+
   onChangeMulti = (e) => {
     var options = e.target.options;
     var value = [];
@@ -47,6 +48,7 @@ class FileUpload extends Component {
     state[e.target.name] = value;
     this.setState(state);
   }
+
   onSubmit = (e) => {
     e.preventDefault();
     const createdBy = this.props.user.username;

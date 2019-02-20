@@ -1,58 +1,43 @@
 import React from 'react';
 import {Button, Glyphicon } from 'react-bootstrap'
+import moment from 'moment';
 
 
-const CaseCollection = (props) => {
-    let ac = {
-        key:props.id,
-        id:props.id,
-        caseName:props.caseName,
-        caseDate:props.caseDate,
-        text:props.text,
-    }
-    let editCase = props.ec;
-    let boundEditCase = editCase.bind(this, ac);
+const FileRow = (props) => {
 
-    let removeCase = props.dc;
-	let boundRemoveCase = removeCase.bind(this, ac);
-	
-	let viewURL = "/case/" + ac.id;
+
+	let viewURL = "/file/" + props.id;
+
+	let dateCreated = new Date(props.dateCreated);
+	dateCreated = dateCreated.toLocaleDateString();
+
 
     return (
-        <tr id="caseRow"> 
+        <tr id="fileRow"> 
             <td>
-                <div id="caseNameCell">{props.caseName}</div>
+                <div>{props.title}</div>
             </td>
             <td>
-                <div id="caseDateCell">{props.caseDate}</div>
+                <div>{props.type}</div>
             </td>
             <td>
-                <div id="caseTextCell">{props.text}</div>
+                <div>{props.author}</div>
             </td>
-            <td> 
-                <div id="caseEditCell">
-						<Button id="controlButton" 
-						bsStyle="info" 
-						bsSize="small"
-						onClick={boundEditCase}
-						>
-							<Glyphicon glyph="pencil" />
-						</Button>
+            <td>
+                <div>{props.size}</div>
+            </td>
+            <td>
+                <div>
+					{dateCreated}
+				</div>
+            </td>
+            <td>
+                <div>
+                    {props.modifiedBy}
                 </div>
             </td>
             <td>
-                <div id="caseDeleteCell">
-						<Button 
-						bsStyle="danger" 
-						bsSize="small"
-						onClick={boundRemoveCase}
-						>
-							<Glyphicon glyph="remove" />
-						</Button>
-                </div>
-            </td>
-            <td>
-                <div id="caseViewCell">
+                <div id="fileViewCell">
 						<Button 
 						bsStyle="warning" 
 						bsSize="small"
@@ -64,26 +49,7 @@ const CaseCollection = (props) => {
                 </div>
             </td>
         </tr>
-
-				//   <ButtonToolbar id="controls">
-				// 	<ButtonGroup>
-				// 		<Button id="controlButton" 
-				// 		bsStyle="info" 
-				// 		bsSize="small"
-				// 		onClick={boundEditCase}
-				// 		>
-				// 			<Glyphicon glyph="pencil" />
-				// 		</Button>
-				// 		<Button 
-				// 		bsStyle="danger" 
-				// 		bsSize="small"
-				// 		onClick={boundRemoveCase}
-				// 		>
-				// 			<Glyphicon glyph="remove" />
-				// 		</Button>
-				// 	</ButtonGroup>
-				// </ButtonToolbar> 
     );
 }
 
-export default CaseCollection
+export default FileRow

@@ -1,6 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Route, Switch, Redirect  } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter  } from 'react-router-dom';
 import {Router, browserHistory} from 'react-router';
 
 import LoginPage from './components/Login/Login';
@@ -13,6 +13,8 @@ import HeaderUnauth from './components/static/Headers/HeaderUnauth';
 import Profile from './components/Profile/ProfilePage';
 import FileUpload from  './components/FileUpload/FileUpload';
 import ManageFiles from './components/ManageFiles/ManageFiles';
+import File from './components/ManageFiles/File';
+
 import { Breadcrumb, Navbar, Nav,NavItem} from 'react-bootstrap';
 import { LinkContainer, NavLink } from 'react-router-bootstrap';
 
@@ -40,21 +42,23 @@ class App extends Component {
 
     if (localStorage.getItem('jwtToken'))
       this.setState({isLoggedIn: true});
+    else 
+      this.props.history.push("/login");
 
     if (localStorage.getItem('user')) {
         let userObj = JSON.parse(localStorage.getItem('user'));
         this.setState({user: userObj});
     }
 
-    axios.get(constants.API+ 'account/')
-      .then(res => {
-        //console.log(res);
-      })
-      .catch((error) => {
-        if(error.response.status === 401) {
-          this.props.history.push("/login");
-        }
-      });
+    // axios.get(constants.API+ 'account/')
+    //   .then(res => {
+    //     //console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     if(error.response.status === 401) {
+    //       this.props.history.push("/login");
+    //     }
+    //   });
   }
 
   render() {
@@ -93,7 +97,8 @@ class App extends Component {
                    render={(props) => <FileUpload user={this.state.user} />}/>
             <Route path="/manage"
                    render={(props) => <ManageFiles user={this.state.user} />}/>  
-            {/* <Route path="/case/:id" exact component={Case}/> */}
+            <Route path="/file/:id" exact component = {File}/>
+                   
             <Route component={Home}/>
           </Switch>
 
@@ -101,5 +106,5 @@ class App extends Component {
     )
   }
 }
-export default App;
+export default withRouter(App);
 
