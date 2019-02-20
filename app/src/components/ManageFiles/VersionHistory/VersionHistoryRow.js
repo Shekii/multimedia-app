@@ -1,13 +1,14 @@
 import React from 'react';
 import {Button, Glyphicon } from 'react-bootstrap'
 
-const FileRow = (props) => {
+
+const VersionHistoryRow = (props) => {
 
 
 	let viewURL = "/file/" + props.id;
 
-	let dateCreated = new Date(props.dateCreated);
-	dateCreated = dateCreated.toLocaleDateString();
+	// let dateCreated = new Date(props.dateCreated);
+	// dateCreated = dateCreated.toLocaleDateString();
 
 
     return (
@@ -19,19 +20,14 @@ const FileRow = (props) => {
                 <div>{props.type}</div>
             </td>
             <td>
-                <div>{props.author}</div>
-            </td>
-            <td>
                 <div>{props.size}</div>
             </td>
             <td>
-                <div>
-					{dateCreated}
-				</div>
+                <div>{props.lastEdited}</div>
             </td>
             <td>
                 <div>
-                    {props.modifiedBy}
+                    {props.lastEditer}
                 </div>
             </td>
             <td>
@@ -50,4 +46,4 @@ const FileRow = (props) => {
     );
 }
 
-export default FileRow
+export default VersionHistoryRow

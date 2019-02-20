@@ -1,7 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, withRouter  } from 'react-router-dom';
-import {Router, browserHistory} from 'react-router';
+import { Route, Switch , withRouter  } from 'react-router-dom';
 
 import LoginPage from './components/Login/Login';
 import RegisterPage from './components/Register/Register';
@@ -15,8 +14,8 @@ import FileUpload from  './components/FileUpload/FileUpload';
 import ManageFiles from './components/ManageFiles/ManageFiles';
 import File from './components/ManageFiles/File';
 
-import { Breadcrumb, Navbar, Nav,NavItem} from 'react-bootstrap';
-import { LinkContainer, NavLink } from 'react-router-bootstrap';
+import { Breadcrumb } from 'react-bootstrap';
+import { NavLink } from 'react-router-bootstrap';
 
 import { Breadcrumbs, BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 
@@ -42,23 +41,11 @@ class App extends Component {
 
     if (localStorage.getItem('jwtToken'))
       this.setState({isLoggedIn: true});
-    else 
-      this.props.history.push("/login");
 
     if (localStorage.getItem('user')) {
         let userObj = JSON.parse(localStorage.getItem('user'));
         this.setState({user: userObj});
     }
-
-    // axios.get(constants.API+ 'account/')
-    //   .then(res => {
-    //     //console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     if(error.response.status === 401) {
-    //       this.props.history.push("/login");
-    //     }
-    //   });
   }
 
   render() {

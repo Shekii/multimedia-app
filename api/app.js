@@ -1,10 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require("mongoose");
-var auth = require('./routes/auth');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require("mongoose");
+const auth = require('./routes/auth');
+
+const session = require('express-session');
 
 mongoose.connect('mongodb://localhost:27017/TMS', {useNewUrlParser: true});
 
@@ -17,7 +19,11 @@ app.set('test', "This is a test");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
+app.use(session({
+    secret: 'secret_app',
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,11 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());  
 app.use(express.static(path.join(__dirname, 'public')));
 
-var indexRouter = require('./routes/index');
-var accountRouter = require('./routes/user');
-var fileHandlerRouter = require('./routes/file');
-var tmsRouter = require('./routes/tms');
-var authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const accountRouter = require('./routes/user');
+const fileHandlerRouter = require('./routes/file');
+const tmsRouter = require('./routes/tms');
+const authRouter = require('./routes/auth');
 
 app.use('/', indexRouter);
 

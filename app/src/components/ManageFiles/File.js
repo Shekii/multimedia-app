@@ -5,6 +5,7 @@ import * as constants from '../static/constants.js';
 import axios from 'axios';
 
 import VersionHistory from './VersionHistory/VersionHistoryTable';
+import VersionHistoryRow from './VersionHistory/VersionHistoryRow';
 
 import { 
      Button, 
@@ -26,11 +27,12 @@ class File extends Component {
             description: '',
             type: '',
             size: '',
+            _id: '',
             permittedLocations: [],
             errorMessage: '',
             successMessage: '',
             file: [],
-            newestRev: [],
+            previousVersions: [],
             user: []
         }
 
@@ -54,23 +56,55 @@ class File extends Component {
                 if (file.fileVersions.length > 0) {
                     let lastIndex = file.fileVersions.length -1;
                     this.setState({
+                        _id: file.fileVersions[lastIndex]._id,
                         title: file.fileVersions[lastIndex].title,
                         type: file.fileVersions[lastIndex].type,
                         description: file.fileVersions[lastIndex].description,
                         size: file.fileVersions[lastIndex].size,
                         permittedLocations: file.fileVersions[lastIndex].permittedLocations,
                     });
+
+                    //populate previousVerions for VersionHistory
+                    let tempVersions = [];
+                    file.fileVersions.forEach(function(version, idx, array) {
+                        //not rendering the newest version
+                        if (idx !== array.length -1) {
+                            tempVersions.push(<VersionHistoryRow
+                                key={version._id}
+                                id={version._id}
+                                title={version.title}
+                                type={version.type}
+                                size={version.size}
+                                lastEdited={version.dateModified}
+                                lastEditer={version.modifiedBy}
+                        />);
+                        }
+                    });
+
+                    //push original final to VersionHistory
+                    tempVersions.push(<VersionHistoryRow
+                        key={file._id}
+                        id={file._id}
+                        title={file.title}
+                        type={file.type}
+                        size={file.size}
+                        lastEdited={file.dateCreated}
+                        lastEditer={file.createdBy}
+                    />);
+
+
+                    this.setState({previousVersions: tempVersions});
+
                 } else {
                     this.setState ({
+                        _id: file._id,
                         title: file.title,
                         type: file.type,
                         description: file.description,
                         size: file.size,
                         permittedLocations: file.permittedLocations,
                     });
-                    this.setState({file: file});
                 }
-
                 //this.setState({successMessage: result.data.message});
 
             } else {
@@ -232,7 +266,7 @@ class File extends Component {
             </Form>
             
 
-            <VersionHistory/>
+            <VersionHistory dataCollection={this.state.previousVersions}/>
         </div>
     );
   }

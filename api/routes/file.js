@@ -4,6 +4,8 @@ const router = express.Router();
 const File = require('../models/File');
 const ObjectId = require('mongodb').ObjectID;
 
+const session = require('express-session');
+
 /*
  * Retrieve files, based on the Location of the user
  */
@@ -47,6 +49,7 @@ router.post('/update/:id', function(req, res) {
           message: 'Failed. File not found.'});
       } else {
           updatedFile.modifiedBy =body.modifiedBy;
+          updatedFile.dateModified = Date.now();
           file.fileVersions.push(updatedFile);
 
           file.save((err) => {
@@ -103,6 +106,8 @@ router.post('/upload', function(req, res) {
         permittedLocations,
         createdBy
     } = body;
+
+    console.log(req.session);
 
 
   if (!title || !description || !type || !size 
