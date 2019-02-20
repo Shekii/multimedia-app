@@ -80,11 +80,15 @@ router.get('/:id', function(req, res) {
     File.findOne({
       _id: ObjectId(req.params.id)
     }, function(err, file) {
-      if (err)
+      if (err) 
         res.send({
           success: false,
           error: err});
-      else {
+      else if (!file) {
+        res.send({
+          success: false,
+          error: 'File not found.'});
+      } else {
         res.send({
           success: true,
           file: file});

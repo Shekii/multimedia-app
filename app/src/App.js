@@ -41,6 +41,8 @@ class App extends Component {
 
     if (localStorage.getItem('jwtToken'))
       this.setState({isLoggedIn: true});
+    else 
+      this.props.history.push("/login");
 
     if (localStorage.getItem('user')) {
         let userObj = JSON.parse(localStorage.getItem('user'));

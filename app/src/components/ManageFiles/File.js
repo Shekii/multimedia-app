@@ -105,15 +105,16 @@ class File extends Component {
                         permittedLocations: file.permittedLocations,
                     });
                 }
-                //this.setState({successMessage: result.data.message});
-
             } else {
-                //this.setState({errorMessage: result.data.message});
+                console.log(result.data);
+                this.setState({errorMessage: result.data});
             }
         })
         .catch((error) => {
             console.log(error);
         });
+
+        console.log("test");
     }
 
   onChange = (e) => {

@@ -51,7 +51,7 @@ class HeaderLoggedIn extends Component {
                                         </NavItem>
                                     </LinkContainer>
                                     <LinkContainer to="/profile">
-                                        <NavItem eventKey={2}>
+                                        <NavItem eventKey={3}>
                                            My Profile
                                         </NavItem>
                                     </LinkContainer>
