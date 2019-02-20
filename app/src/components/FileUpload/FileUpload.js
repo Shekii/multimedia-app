@@ -27,7 +27,7 @@ class FileUpload extends Component {
     };
 
   }
-  componentDidMount() {
+  async componentDidMount() {
       console.log(this.state.user.username);
   }
   onChange = (e) => {
@@ -100,9 +100,12 @@ class FileUpload extends Component {
                 noValidate controlId="formHorizontalDescription">
                 <Col componentClass={ControlLabel} sm={2}>File Description</Col>
                 <Col sm={10}>
-                    <FormControl 
+                    <textarea 
+                        className="form-control"
                         required type="text" 
-                        name="description" 
+                        name="description"
+                        as="textarea" 
+                        row="3"
                         placeholder="File Description"
                         onChange={this.onChange}/>
                 </Col>
@@ -156,7 +159,7 @@ class FileUpload extends Component {
                 bsStyle="primary" bsSize="large" block>
                 Upload File
             </Button>
-        </Form>
+        </Form>   
     </div>
     );
   }

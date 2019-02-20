@@ -6,6 +6,7 @@ import {  Modal, Button } from 'react-bootstrap';
 import FilesTable from './FilesTable';
 import FileCollection from './FileRow';
 
+
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 
 
@@ -69,7 +70,7 @@ class ManageFiles extends Component {
       <div>
          <BreadcrumbsItem to='/manage'>Manage Files</BreadcrumbsItem>
 
-         <div className="container">
+         <div className="container-fluid">
             <FilesTable dataCollection={this.state.files}/>
          </div>
       </div>

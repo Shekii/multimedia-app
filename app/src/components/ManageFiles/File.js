@@ -4,6 +4,8 @@ import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 import * as constants from '../static/constants.js';
 import axios from 'axios';
 
+import VersionHistory from './VersionHistory/VersionHistoryTable';
+
 import { 
      Button, 
      FormGroup,
@@ -159,11 +161,12 @@ class File extends Component {
                     noValidate controlId="formHorizontalDescription">
                     <Col componentClass={ControlLabel} sm={2}>File Description</Col>
                     <Col sm={8}>
-                        <FormControl 
+                        <textarea
+                            className="form-control" 
                             required type="text" 
                             name="description" 
                             placeholder="File Description"
-                            defaultValue={this.state.description}
+                            value={this.state.description}
                             onChange={this.onChange}/>
                     </Col>
                 </FormGroup>
@@ -174,7 +177,7 @@ class File extends Component {
                         <select name="type" 
                                 onChange={this.onChange}
                                 className="form-control"
-                                defaultValue={this.state.type}>
+                                value={this.state.type}>
                             <option value=".pdf">.pdf</option>
                             <option value=".gif">.gif</option>
                             <option value=".jpg">.jpg</option>
@@ -227,7 +230,9 @@ class File extends Component {
                     Delete File
                 </Button>
             </Form>
-            <h3>Previous Versions</h3>
+            
+
+            <VersionHistory/>
         </div>
     );
   }
