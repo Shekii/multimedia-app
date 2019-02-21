@@ -24,6 +24,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,13 +35,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 const accountRouter = require('./routes/user');
 const fileHandlerRouter = require('./routes/file');
-const tmsRouter = require('./routes/tms');
+
 const authRouter = require('./routes/auth');
 
 app.use('/', indexRouter);
 
 app.use('/account', accountRouter);
-app.use('/tms', tmsRouter);
+
 app.use('/file', fileHandlerRouter);
 app.use('/auth', authRouter);
 

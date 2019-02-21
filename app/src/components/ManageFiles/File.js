@@ -38,6 +38,8 @@ class File extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        
     }
     async componentDidMount() {
 
@@ -113,8 +115,6 @@ class File extends Component {
         .catch((error) => {
             console.log(error);
         });
-
-        console.log("test");
     }
 
   onChange = (e) => {
@@ -128,12 +128,6 @@ class File extends Component {
     const modifiedBy = this.state.user.username;
     const { title, description, type, size, permittedLocations } = this.state;
 
-    console.log(title);
-    console.log(description);
-    console.log(type);
-    console.log(size);
-    console.log(permittedLocations);
-    
     let fileID = this.props.match.params.id;
     axios.post(constants.API + 'file/update/' + fileID,
     { title, description, type, size, permittedLocations, modifiedBy })
@@ -141,7 +135,6 @@ class File extends Component {
         if (result.data.success === true) {
             this.setState({ successMessage: result.data.message});
         }
-        console.log(result.data.message);
       });
   }
 
@@ -156,6 +149,21 @@ class File extends Component {
     const state = this.state;
     state[e.target.name] = value;
     this.setState(state);
+  }
+
+  onDelete = () => {
+        let fetchID = this.props.match.params.id;
+        axios.post(constants.API + 'file/delete/' + fetchID)
+        .then((result) => {
+            if (result.data.error) {
+                this.setState({errorMessage: result.data.error});
+            } else {
+                this.props.history.push('/manage');
+            }
+        })
+        .catch ((error) => {
+            console.log(error);
+        });
   }
 
   render() {
@@ -259,8 +267,7 @@ class File extends Component {
                     Save and Checkout
                 </Button>
                 <Button 
-                    type="submit" 
-                    onClick={this.onSubmit}
+                    onClick={this.onDelete}
                     bsStyle="danger" bsSize="small" block>
                     Delete File
                 </Button>

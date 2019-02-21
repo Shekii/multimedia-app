@@ -12,13 +12,40 @@ const session = require('express-session');
 router.get('/', function(req, res) {
 
     File.find({}, (err, files ) => {
-
-      res.send({files: files});
-
-      console.log(files);
+      if (err) {
+        res.send({
+          success: false,
+          message: err
+        });
+      } else { 
+        res.send({
+          files: files
+        });
+      }
     });
 });
 
+/*
+ * Update a file by id
+ * 
+ */
+router.post('/delete/:id', function(req, res) {
+
+  File.remove({
+    _id: ObjectId(req.params.id)
+  }, function(err) {
+    if (err) 
+          res.send( {
+          success: false,
+          error: 'Error: Error removing file'
+        });
+     else 
+          res.send({
+            success: true,
+            message: 'Success, file deleted'
+          })
+  });
+});
 /*
  * Update a file and add a revision
  * 
@@ -110,9 +137,6 @@ router.post('/upload', function(req, res) {
         permittedLocations,
         createdBy
     } = body;
-
-    console.log(req.session);
-
 
   if (!title || !description || !type || !size 
       || !permittedLocations ) {

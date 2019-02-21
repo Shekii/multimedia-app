@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import * as constants from '../static/constants.js';
 import axios from 'axios';
-import {  Modal, Button } from 'react-bootstrap';
 
 import FilesTable from './FilesTable';
 import FileCollection from './FileRow';
