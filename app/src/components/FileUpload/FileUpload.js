@@ -54,6 +54,8 @@ class FileUpload extends Component {
     const createdBy = this.props.user.username;
     const { title, description, type, size, permittedLocations } = this.state;
 
+    console.log(permittedLocations.toString());
+
     axios.post(constants.API + 'file/upload',
     { title, description, type, size, permittedLocations, createdBy })
       .then((result) => {

@@ -30,18 +30,6 @@ const VersionHistoryRow = (props) => {
                     {props.lastEditer}
                 </div>
             </td>
-            <td>
-                <div id="fileViewCell">
-						<Button 
-						bsStyle="warning" 
-						bsSize="small"
-						
-						href={viewURL}
-						>
-							<Glyphicon glyph="zoom-in" />
-						</Button>
-                </div>
-            </td>
         </tr>
     );
 }

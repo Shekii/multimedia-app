@@ -53,10 +53,11 @@ class File extends Component {
         axios.get(constants.API + 'file/' + fetchID)
         .then((result) => {
             if (!result.data.error) {
-                let file = result.data.file;
+                let file = result.data.file; 
 
                 if (file.fileVersions.length > 0) {
-                    let lastIndex = file.fileVersions.length -1;
+
+                    let lastIndex = file.fileVersions.length -1; 
                     this.setState({
                         _id: file.fileVersions[lastIndex]._id,
                         title: file.fileVersions[lastIndex].title,
@@ -67,8 +68,10 @@ class File extends Component {
                     });
 
                     //populate previousVerions for VersionHistory
+                    //in DESC order using reverse()
                     let tempVersions = [];
-                    file.fileVersions.forEach(function(version, idx, array) {
+    
+                    file.fileVersions.reverse().forEach(function(version, idx, array) {
                         //not rendering the newest version
                         if (idx !== array.length -1) {
                             tempVersions.push(<VersionHistoryRow
@@ -83,7 +86,7 @@ class File extends Component {
                         }
                     });
 
-                    //push original final to VersionHistory
+                    //push original final to VersionHistory created by Author
                     tempVersions.push(<VersionHistoryRow
                         key={file._id}
                         id={file._id}
@@ -92,11 +95,8 @@ class File extends Component {
                         size={file.size}
                         lastEdited={file.dateCreated}
                         lastEditer={file.createdBy}
-                    />);
-
-
+                />); 
                     this.setState({previousVersions: tempVersions});
-
                 } else {
                     this.setState ({
                         _id: file._id,

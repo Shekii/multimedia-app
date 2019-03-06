@@ -19,6 +19,7 @@ router.get('/', function(req, res) {
         });
       } else { 
         res.send({
+          success: true,
           files: files
         });
       }
@@ -104,24 +105,30 @@ router.post('/update/:id', function(req, res) {
  */
 router.get('/:id', function(req, res) {
 
-    File.findOne({
-      _id: ObjectId(req.params.id)
-    }, function(err, file) {
-      if (err) 
-        res.send({
-          success: false,
-          error: err});
-      else if (!file) {
+    if (!ObjectId.isValid(req.params.id)) {
         res.send({
           success: false,
           error: 'File not found.'});
-      } else {
-        res.send({
-          success: true,
-          file: file});
-      }
+    } else {
+      File.findOne({
+        _id: ObjectId(req.params.id)
+      }, function(err, file) {
+        if (err) 
+          res.send({
+            success: false,
+            error: err});
+        else if (!file) {
+          res.send({
+            success: false,
+            error: 'File not found.'});
+        } else {
+          res.send({
+            success: true,
+            file: file});
+        }
 
-    });
+      });
+    }
 });
 
 /*
