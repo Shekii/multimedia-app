@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "02af9328-a11e-c8de-89ef-74cc1ef81c01",
+		"name": "TOVI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER_SIGNUP_SUCCESS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"test\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER_SIGNUP_FAIL_USERNAME_EXISTS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"test\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER_SIGNUP_FAIL_MISSINGFIELDS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"test\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER_LOGIN_SUCCESS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"tes1t\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER_LOGIN_FAIL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"tes1t\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER_LOGIN_FAIL_USER_NOT_FOUND",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"firstName\":\"Harry\",\n\t\"lastName\":\"Walker\",\n\t\"team\":\"Marketing\",\n\t\"location\":\"Leeds\",\n\t\"password\":\"tes1t\",\n\t\"accountType\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/account/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FILE_UPLOAD_FAIL_MISSINGFIELDS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Meeting Minutes\",\n\t\"description\":\"Meeting minutes for next business meeting\",\n\t\"type\":\".pdf\",\n\t\"permittedLocations\":[\"Oslo\", \"Leeds\", \"Malmö\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FILE_UPLOAD_SUCCESS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Meeting Minutes\",\n\t\"description\":\"Meeting minutes for next business meeting\",\n\t\"type\":\".pdf\",\n\t\"permittedLocations\":[\"Oslo\", \"Leeds\", \"Malmö\"],\n\t\"createdBy\":\"shekii\",\n\t\"size\": 999\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FILE_GET_SUCCESS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Meeting Minutes\",\n\t\"description\":\"Meeting minutes for next business meeting\",\n\t\"type\":\".pdf\",\n\t\"permittedLocations\":[\"Oslo\", \"Leeds\", \"Malmö\"],\n\t\"createdBy\":\"shekii\",\n\t\"size\": 999\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FILE_GET_FAIL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Meeting Minutes\",\n\t\"description\":\"Meeting minutes for next business meeting\",\n\t\"type\":\".pdf\",\n\t\"permittedLocations\":[\"Oslo\", \"Leeds\", \"Malmö\"],\n\t\"createdBy\":\"shekii\",\n\t\"size\": 999\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
