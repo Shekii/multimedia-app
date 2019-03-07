@@ -70,21 +70,6 @@ class File extends Component {
                     //populate previousVerions for VersionHistory
                     //in DESC order using reverse()
                     let tempVersions = [];
-    
-                    file.fileVersions.reverse().forEach(function(version, idx, array) {
-                        //not rendering the newest version
-                        if (idx !== array.length -1) {
-                            tempVersions.push(<VersionHistoryRow
-                                key={version._id}
-                                id={version._id}
-                                title={version.title}
-                                type={version.type}
-                                size={version.size}
-                                lastEdited={version.dateModified}
-                                lastEditer={version.modifiedBy}
-                        />);
-                        }
-                    });
 
                     //push original final to VersionHistory created by Author
                     tempVersions.push(<VersionHistoryRow
@@ -93,9 +78,33 @@ class File extends Component {
                         title={file.title}
                         type={file.type}
                         size={file.size}
-                        lastEdited={file.dateCreated}
+                        lastEdited={
+                                new Date(file.dateCreated).toLocaleDateString("en-US")
+                                + " - " +
+                                new Date(file.dateCreated).toLocaleTimeString("en-US")
+                        }
                         lastEditer={file.createdBy}
                 />); 
+    
+                    file.fileVersions.forEach(function(version, idx, array) {
+                        //not rendering the newest version
+                        if (idx !== array.length -1) {
+                            tempVersions.push(<VersionHistoryRow
+                                key={version._id}
+                                id={version._id}
+                                title={version.title}
+                                type={version.type}
+                                size={version.size}
+                                lastEdited={
+                                    new Date(version.dateModified).toLocaleDateString("en-US")
+                                    + " - " +
+                                    new Date(version.dateModified).toLocaleTimeString("en-US")
+                                }
+                                lastEditer={version.modifiedBy}
+                        />);
+                        }
+                    });
+
                     this.setState({previousVersions: tempVersions});
                 } else {
                     this.setState ({
@@ -115,6 +124,12 @@ class File extends Component {
         .catch((error) => {
             console.log(error);
         });
+    }
+
+    dateString = (timestamp) => {
+        return new Date(timestamp).toLocaleDateString("en-US")
+                + " - " +
+                new Date(timestamp).toLocaleTimeString("en-US")
     }
 
   onChange = (e) => {
